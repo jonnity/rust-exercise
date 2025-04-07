@@ -1,5 +1,5 @@
-const PI_THREE_DIGIT = 3.14
-// let PI_THREE_DIGIT = 3.14
+const PI_THREE_DIGIT: f64 = 3.14;
+// let PI_THREE_DIGIT = 3.14;
 // グローバルスコープでは↑とは書けない
 
 fn main() {
