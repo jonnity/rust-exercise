@@ -3,5 +3,11 @@ fn main() {
     let y: Option<i8> = Some(5);
 
     // ↓はエラーになる
-    let sum = x + y;
+    // let sum = x + y;
+
+    let sum = match y {
+        None => x,
+        Some(value) => x + value,
+    };
+    println!("sum is {}", sum)
 }
