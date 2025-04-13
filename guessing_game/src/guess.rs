@@ -1,16 +1,16 @@
 pub struct Guess {
-    value: u32,
+    pub value: u32,
 }
 
 impl Guess {
-    pub fn new(value: u32) -> Guess {
+    pub fn new(value: u32) -> Result<Guess, String> {
         if value < 1 || value > 100 {
             // 予想の値は1から100の範囲でなければなりませんが、{}でした
-            panic!("Guess value must be between 1 and 100, got {}.", value);
+            return Err(format!(
+                "予想の値は1から100の範囲でなければなりませんが、{}でした",
+                value
+            ));
         }
-        Guess { value }
-    }
-    pub fn value(&self) -> u32 {
-        self.value
+        Ok(Guess { value })
     }
 }
