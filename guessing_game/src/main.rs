@@ -19,16 +19,24 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         };
-        let user_guess = Guess::new(user_guess).value();
-
-        println!("You guessed: {}", user_guess);
-        match user_guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),  //小さすぎ！
-            Ordering::Greater => println!("Too big!"), //大きすぎ！
-            Ordering::Equal => {
-                println!("You win!");
-                break;
-            } //やったね！
+        match Guess::new(user_guess) {
+            Ok(user_guess) => {
+                let user_guess = user_guess.value;
+                println!("You guessed: {}", user_guess);
+                match user_guess.cmp(&secret_number) {
+                    Ordering::Less => println!("Too small!"),  //小さすぎ！
+                    Ordering::Greater => println!("Too big!"), //大きすぎ！
+                    Ordering::Equal => {
+                        println!("You win!");
+                        break;
+                    } //やったね！
+                }
+            }
+            Err(e) => {
+                println!("Error: {}", e);
+                println!("Re-input in 1-100!");
+                continue;
+            }
         }
     }
 }
